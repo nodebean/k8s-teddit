@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: teddit
+  labels:
+    app: teddit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: teddit
+  template:
+    metadata:
+      labels:
+        app: teddit
+    spec:
+      containers:
+        - name: teddit
+          image: teddit/teddit:latest
+          env:
+            - name: "DOMAIN"
+              value: "teddit.beanteam.org"
+            - name: "THEME"
+              value: "Dark"
+            - name: "API_ENABLED"
+              value: "false"
+            - name: "REDIS_ENABLED"
+              value: "false"
+            - name: "LISTEN_ADDRESS"
+              value: "127.0.0.1"
+            - name: "TRUST_PROXY"
+              value: "true"
+          ports:
+            - containerPort: 8080              
+        - name: nginx
+          image: nginx:stable-alpine
+          volumeMounts:
+            - mountPath: /etc/nginx
+              name: teddit-nginx-conf
+          ports:
+            - containerPort: 80             
+      volumes:
+        - name: teddit-nginx-conf
+          configMap:
+            defaultMode: 444
+            name: teddit-nginx-conf

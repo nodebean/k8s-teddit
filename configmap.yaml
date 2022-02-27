@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: teddit-nginx-conf
+  labels:
+    app: teddit
+data:
+  nginx.conf: |-
+    user nginx;
+    worker_processes 1;
+    events {
+      worker_connections 10240;
+    }
+    http {
+      server {
+        location / {
+            proxy_pass http://127.0.0.1:8080;
+        }
+        location = /robots.txt {
+          add_header Content-Type text/plain;
+          return 200 "User-agent: *\nDisallow: /\n";
+        }
+      }
+    }
