@@ -1,0 +1,18 @@
+{
+	"theme":"dark",
+	"flairs":"true",
+	"nsfw_enabled":"true",
+	"highlight_controversial":"true",
+	"post_media_max_height":"medium",
+	"collapse_child_comments":"false",
+	"show_upvoted_percentage":"true",
+	"show_upvotes":"true",
+	"videos_muted":"true",
+	"domain_twitter":"t.beanteam.org",
+	"domain_youtube":"piped.kavin.rocks",
+	"domain_instagram":"",
+	"subbed_subreddits": [
+		"pics",
+		"iama"
+	]
+}

@@ -20,18 +20,16 @@ spec:
           env:
             - name: "DOMAIN"
               value: "teddit.beanteam.org"
-            - name: "THEME"
-              value: "Dark"
             - name: "API_ENABLED"
-              value: "false"
-            - name: "REDIS_ENABLED"
               value: "false"
             - name: "LISTEN_ADDRESS"
               value: "127.0.0.1"
             - name: "TRUST_PROXY"
               value: "true"
           ports:
-            - containerPort: 8080              
+            - containerPort: 8080
+        - name: redis
+          image: redis:6-alpine            
         - name: nginx
           image: nginx:stable-alpine
           volumeMounts:
